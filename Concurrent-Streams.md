@@ -128,9 +128,18 @@ This API is decoupled from the Request/Response in OpenRTB.
 
 The region is expected to represent the endpoint traffic distribution across different geographic areas. Coarse granularity acceptable for MVP and is expected to drive system scaling in regional datacenters. E.g. US West Coast.
 
-SSAI includes SGAI
+SSAI includes SGAI. Streamers leveraging Server Guided Ad Insertion models should leverage ‘SSAI’ workflows. 
 
 As a best practice, it is recommended that viewership values be representative of users at the live edge/timepoint.
+
+Requests will be coming from an API consumer to SSAI vendors on behalf of the Content Owner. 
+
+When API is called, metadata will be returned for all live events the Subscriber has access to.
+
+Event name and/or ID is sharable with API subscribers at run time and/or event name is known to subscribers of the API <i>a priori</i> to the request for concurent streams 
+App information is known <i>a priori</i> to the request 
+
+Providers are expected to return information for all Live Events occurring at time of API request.
 
 ## Content Information <a name="contentinfo"></a>
 The attributes under the <code>mediastream</code> object provide various options for providers to declare a live event, and so that consumers of this data can identify that event in other contexts 
