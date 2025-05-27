@@ -6,11 +6,7 @@
 https://iabtechlab.com/leap
 
 #### About OpenRTB
-https://iabtechlab.com/openrtb  
-
-
-#### Versioning Policy
-HILL TO UPDATE
+https://iabtechlab.com/openrtb
 
 #### Contact
 For more information, or to get involved, please email support@iabtechlab.com.
