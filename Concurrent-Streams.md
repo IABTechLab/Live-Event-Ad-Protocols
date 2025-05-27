@@ -29,6 +29,8 @@ THE STANDARDS, THE SPECIFICATIONS, THE MEASUREMENT GUIDELINES, AND ANY OTHER MAT
   - [json Examples](#json)
 
 # Introduction <a name="intro"></a>
+This is version 1.0 of the Concurrent Streams specification and every attempt will be made to make future versions backward compatible if possible.
+
 ## Executive Summary
 Due to challenges of forecasting live inventory, and dynamic viewership changes that occur during the live event playout, advertising systems may be inappropriately scaled to process ad decision transactions, causing poor UX and lost revenue opportunities for DSPs, SSPs, pub ad servers, and publishers. 
 
