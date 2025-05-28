@@ -50,7 +50,7 @@ Subscribers on the buy side such as DSPs and advertisers need to adjust their in
 | --------- | ------ | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | version   | string | yes         | E.g., 1.0.0                                                                                                                                                                                                                                      |
 | requestor | string | recommended | Authorized party requesting information from the endpoint. Not required if the endpoint allows anonymous requests.                                                                                                                               |
-| sdp       | string | optional    | Streams Data Provider. This is the content owner or distributor for which live viewership data is being requested. Recommended only when the endpoint provides data from multiple providers, and the requestor needs to filter to specific VDPs. |
+| sdp       | string | optional    | Streams Data Provider. This is the content owner or distributor for which live viewership data is being requested. Recommended only when the endpoint provides data from multiple providers, and the requestor needs to filter to specific Streams Data Providerss. |
 
 ## Concurrent Streams Response <a name="streamsresponse"></a>
 
@@ -160,9 +160,9 @@ It is strongly recommended that some identifier for the content in question is p
 {
   "version": "1.0.0",
   "timestamp": "1713366138",
-  "viewership-data": [
+  "streamsdata": [
     {
-      "vdp": "TV Network A",
+      "sdp": "TV Network A",
       "mediastreams": [
         {
           "content": {
@@ -178,7 +178,7 @@ It is strongly recommended that some identifier for the content in question is p
           },
           "eventstart": "1713366132",
           "eventend": "1713378132",
-          "viewership": [
+          "streamcount": [
             {"region": "1", "sstreams": "140000", "cstreams": "400000"},
             {"region": "2", "sstreams": "100000", "cstreams": "20000"},
             {"region": "3", "sstreams": "500000", "cstreams": "10000"}
@@ -198,7 +198,7 @@ It is strongly recommended that some identifier for the content in question is p
           },
           "eventstart": "1713366132",
           "eventend": "1713378132",
-          "viewership": [
+          "streamcount": [
             {"region": "1", "sstreams": "150000", "cstreams": "500000"},
             {"region": "2", "sstreams": "130000", "cstreams": "23000"},
             {"region": "3", "sstreams": "520000", "cstreams": "12000"}
@@ -207,7 +207,7 @@ It is strongly recommended that some identifier for the content in question is p
       ]
     },
     {
-      "vdp": "TV Network B",
+      "sdp": "TV Network B",
       "mediastreams": [
         {
           "content": {
@@ -223,7 +223,7 @@ It is strongly recommended that some identifier for the content in question is p
           },
           "eventstart": "1713366132",
           "eventend": "1713378132",
-          "viewership": [
+          "streamcount": [
             {"region": "1", "sstreams": "140050", "cstreams": "400050"},
             {"region": "2", "sstreams": "100060", "cstreams": "20060"},
             {"region": "3", "sstreams": "500070", "cstreams": "10070"}
@@ -243,7 +243,7 @@ It is strongly recommended that some identifier for the content in question is p
           },
           "eventstart": "1713366132",
           "eventend": "1713378132",
-          "viewership": [
+          "streamcount": [
             {"region": "1", "sstreams": "150050", "cstreams": "500050"},
             {"region": "2", "sstreams": "130060", "cstreams": "23060"},
             {"region": "3", "sstreams": "520070", "cstreams": "12070"}
