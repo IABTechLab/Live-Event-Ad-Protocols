@@ -170,7 +170,7 @@ It is strongly recommended that some identifier for the content in question is p
             "genres": [646],
             "gtax": 9,
             "contentrating": "PG-13",
-            "channe": {"name": "Comedy Channel"},
+            "channel": {"name": "Comedy Channel"},
             "data": {
               "name": "vendorA.com",
               "cids": ["alpha", "beta", "gamma", "delta", "epsilon"]
