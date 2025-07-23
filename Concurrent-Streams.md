@@ -71,7 +71,7 @@ Subscribers on the buy side such as DSPs and advertisers need to adjust their in
 
 | Attribute  | Type          | Required | Description                             |
 | ---------- | ------------- | -------- | --------------------------------------- |
-| content    | object        |          | See: Object: Content in ORTB            |
+| content    | object        |          | See: Object: Content in AdCOM 1.0       |
 | eventstart | integer       | yes      | Event start time (Unix timestamp in ms) |
 | eventend   | integer       | yes      | Event end time (Unix timestamp in ms)   |
 | streamsdata    | object, array |          | Contains separate SSAI and CSAI metrics |
@@ -85,40 +85,9 @@ Subscribers on the buy side such as DSPs and advertisers need to adjust their in
 | cstreams  | integer | yes         | Concurrent CSAI streams. At least one of sstreams or cstreams must be present. |
 
 ### Object: Content <a name="content"></a>
+This object describes the content in which an impression can appear, which may be syndicated or non-syndicated content. This object may be useful when syndicated content contains impressions and does not necessarily match the publisher's general content. An exchange may or may not have knowledge of the page where the content is running as a result of the syndication method (e.g., a video impression embedded in an iframe on an unknown web property or device).
 
-| Attribute          | Type               | Description                         |
-| ------------------ | ------------------ | ----------------------------------- |
-| id                 | string             | Unique content ID                   |
-| episode            | integer            | Episode number                      |
-| title              | string             | Content title                       |
-| series             | string             | Content series                      |
-| season             | string             | Content season                      |
-| artist             | string             | Artist credited                     |
-| gtax               | int; default 9     | Taxonomy in use                     |
-| genres             | int array          | Genre categories per taxonomy       |
-| album              | string             | Album name (for audio)              |
-| isrc               | string             | ISO-3901 code                       |
-| producer           | object             | Content producer details            |
-| url                | string             | Content URL                         |
-| cattax             | integer; default 1 | Taxonomy in use for cat field       |
-| cat                | string array       | Content categories                  |
-| prodq              | integer            | Production quality                  |
-| context            | integer            | Type of content (game, video, etc.) |
-| contentrating      | string             | Content rating (e.g., MPAA)         |
-| userrating         | string             | User rating                         |
-| qagmediarating     | integer            | Media rating per IQG                |
-| keywords           | string             | Comma-separated keywords            |
-| kwarray            | string array       | Array of keywords                   |
-| livestream         | integer            | 0 = not live, 1 = live content      |
-| sourcerelationship | integer            | 0 = indirect, 1 = direct            |
-| len                | integer            | Content length in seconds           |
-| language           | string             | ISO-639-1-alpha-2 code              |
-| langb              | string             | IETF BCP 47 language code           |
-| embeddable         | integer            | 0 = no, 1 = yes                     |
-| data               | object array       | Additional content data             |
-| network            | object             | Network details                     |
-| channel            | object             | Channel details                     |
-| ext                | object             | Exchange-specific extensions        |
+Refer to [Object: Content from AdCOM 1.0](https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/main/AdCOM%20v1.0%20FINAL.md#object--content-) for specific values.
 
 
 # Implementation Guidance <a name="impguide"></a>
