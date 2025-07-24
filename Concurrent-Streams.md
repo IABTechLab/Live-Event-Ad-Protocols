@@ -85,8 +85,6 @@ Subscribers on the buy side such as DSPs and advertisers need to adjust their in
 | cstreams  | integer | yes         | Concurrent CSAI streams. At least one of sstreams or cstreams must be present. |
 
 ### Object: Content <a name="content"></a>
-This object describes the content in which an impression can appear, which may be syndicated or non-syndicated content. This object may be useful when syndicated content contains impressions and does not necessarily match the publisher's general content. An exchange may or may not have knowledge of the page where the content is running as a result of the syndication method (e.g., a video impression embedded in an iframe on an unknown web property or device).
-
 Refer to [Object: Content from AdCOM 1.0](https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/main/AdCOM%20v1.0%20FINAL.md#object--content-) for specific values.
 
 
