@@ -74,7 +74,7 @@ Subscribers on the buy side such as DSPs and advertisers need to adjust their in
 | content    | object        |          | See: Object: Content in AdCOM 1.0       |
 | eventstart | integer       | yes      | Event start time (Unix timestamp in ms) |
 | eventend   | integer       | yes      | Event end time (Unix timestamp in ms)   |
-| streamsdata    | object, array |          | Contains separate SSAI and CSAI metrics |
+| streamcount    | object, array |          | Contains separate SSAI and CSAI metrics |
 
 ### Object: StreamCount <a name="streamcount"></a>
 
