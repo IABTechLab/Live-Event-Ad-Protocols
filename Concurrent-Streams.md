@@ -81,8 +81,8 @@ Subscribers on the buy side such as DSPs and advertisers need to adjust their in
 | Attribute | Type    | Required    | Description                                                                    |
 | --------- | ------- | ----------- | ------------------------------------------------------------------------------ |
 | region    | integer |             | Region codes: 1 - N\_America\_East, 2 - N\_America\_West, etc.                 |
-| sstreams  | integer | recommended | Concurrent SSAI streams. At least one of sstreams or cstreams must be present. |
-| cstreams  | integer | yes         | Concurrent CSAI streams. At least one of sstreams or cstreams must be present. |
+| sstreams  | integer |  | Concurrent SSAI streams. At least one of sstreams or cstreams must be present. |
+| cstreams  | integer |          | Concurrent CSAI streams. At least one of sstreams or cstreams must be present. |
 
 ### Object: Content <a name="content"></a>
 Refer to [Object: Content from AdCOM 1.0](https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/main/AdCOM%20v1.0%20FINAL.md#object--content-) for specific values.
