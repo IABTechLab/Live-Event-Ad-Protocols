@@ -26,7 +26,16 @@ THE STANDARDS, THE SPECIFICATIONS, THE MEASUREMENT GUIDELINES, AND ANY OTHER MAT
 - [Implementation Guidance](#impguide)
   - [General Information](#geninfo)
   - [Content Information](#contentinfo)
-  - [json Examples](#json)
+  - [Base URI](#base-uri)
+  - [Endpoints](#endpoints)
+  - [Query Parameters](#query-parameters)
+  - [Path Parameters](#path-parameters)
+  - [Request Examples](#request-examples)
+  - [Response Examples](#response-examples)
+  - [Usage Guidance](#usage-guidance)
+  - [Role-Based Access](#role-based-access)
+  - [Integration with Event Forecasts API](#integration)
+
 
 # Introduction <a name="intro"></a>
 This is version 1.0 of the Concurrent Streams specification and every attempt will be made to make future versions backward compatible if possible.
@@ -120,10 +129,123 @@ A provider can sufficiently identify a specific live event with one or more of t
 
 It is strongly recommended that some identifier for the content in question is passed. This could correspond to the content owners Content Management System (CMS), and/or some other commercially available content identifier. Whatever content ID is provided, should be the same as the ID that is provided on the Bid Request. Additional information about the Content can be provided in the Extended Content IDs array. 
 
-
-## json Examples <a name="json"></a>
+## Base URI <a name="base-uri"></a>
 
 ```
+https://api.example.com/v1/concurrentstreams
+
+```
+
+----------
+
+## Endpoints <a name="endpoints"></a>
+
+### Collection Endpoints
+
+**`GET /concurrentstreams`**
+
+-   Retrieves current concurrent stream data for all active live events
+-   Returns near real-time viewership signals
+-   Supports filtering by requestor and Streams Data Provider (SDP)
+
+**`GET /concurrentstreams/{contentId}`**
+
+-   Retrieves concurrent stream data for specific content
+-   Returns detailed viewership breakdown by stream type and region
+-   Includes SSAI and CSAI stream counts
+
+----------
+
+## Query Parameters <a name="query-parameters"></a>
+
+### Filtering Parameters
+
+#### Table
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `requestor` | String | Identifies the requesting entity (SSAI, publisher, DSP, advertiser) |
+| `sdp` | String | Optional Streams Data Provider identifier for multi-provider scenarios |
+| `region` | Integer | Filters stream data by region code (1=N_America_East, 2=N_America_West, 3=Europe, etc.) |
+
+### Pagination Parameters
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `limit` | Integer | Maximum results per page (default: 50, max: 100) |
+| `offset` | Integer | Starting position (default: 0) |
+
+----------
+
+## Path Parameters <a name="path-parameters"></a>
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `{contentId}` | String | Unique content identifier (CMS ID or persistent identifier) |
+
+----------
+
+## Request Examples <a name="request-examples"></a>
+
+### Get All Concurrent Streams
+
+```http
+GET /v1/concurrentstreams?requestor=example-ssai
+Authorization: Bearer {access_token}
+```
+
+### Get Concurrent Streams for Specific Content
+
+```http
+GET /v1/concurrentstreams/CMS123?requestor=example-ssai
+Authorization: Bearer {access_token}
+```
+
+### Filter by Region
+
+```http
+GET /v1/concurrentstreams?requestor=example-ssai&region=1
+Authorization: Bearer {access_token}
+```
+
+----------
+## Response Examples <a name="response-examples"></a>
+
+### Single Content Response
+
+```json
+{
+  "version": "1.0.0",
+  "timestamp": "1738785540000",
+  "streamsdata": [
+    {
+      "sdp": "TV Network A",
+      "mediastreams": [
+        {
+          "content": {
+            "id": "CMS123",
+            "genres": [646],
+            "gtax": 9,
+            "contentrating": "PG-13",
+            "channel": {"name": "Comedy Channel"}
+          },
+          "eventstart": "1738785000000",
+          "eventend": "1738796800000",
+          "streamcount": [
+            {"region": 1, "sstreams": 140000, "cstreams": 400000},
+            {"region": 2, "sstreams": 100000, "cstreams": 20000},
+            {"region": 3, "sstreams": 500000, "cstreams": 10000}
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+### Multi-Event Response
+
+```json
 {
   "version": "1.0.0",
   "timestamp": "1713366138",
@@ -221,3 +343,100 @@ It is strongly recommended that some identifier for the content in question is p
   ]
 }
 ```
+----------
+
+## Usage Guidance <a name="usage-guidance"></a>
+
+### Data Freshness
+
+-   API provides  **near real-time**  viewership data
+-   Typical latency: 30-60 seconds from actual viewership
+-   Subscribers should poll at appropriate intervals (recommended: 1-5 minutes)
+-   Avoid excessive polling to respect rate limits
+
+### Content Identification
+
+-   Use  **CMS IDs**  or other persistent identifiers for content
+-   Content identifiers should remain consistent across API calls
+-   Map content IDs to internal systems for correlation
+-   Content ID should match the ID provided in bid requests
+
+### Viewership Values
+
+-   Stream counts represent users at the  **live edge**
+-   Excludes DVR/time-shifted viewing
+-   Counts are point-in-time snapshots, not cumulative
+-   Regional breakdowns enable geographic scaling decisions
+
+### Region Codes
+
+-   Region codes are integers representing geographic areas
+-   Example codes: 1=N_America_East, 2=N_America_West, 3=Europe
+-   Coarse granularity acceptable for MVP
+-   Drives system scaling in regional datacenters
+
+
+### Scaling Recommendations
+
+**Infrastructure Scaling:**
+
+-   Monitor stream count trends (increasing/decreasing)
+-   Scale proactively when counts exceed 80% of capacity
+-   Implement auto-scaling based on stream count thresholds
+
+**Bidding Strategy:**
+
+-   Higher viewership = higher competition = adjust bids accordingly
+-   Use historical patterns to predict viewership curves
+
+**QPS Management:**
+
+-   Calculate expected QPS: (concurrent streams × ad requests per stream)
+-   Scale ad serving infrastructure before reaching capacity
+-   Implement circuit breakers for overload protection
+
+----------
+
+## Role-Based Access <a name="role-based-access"></a>
+
+**SSAI Provider (Read Access)**
+
+-   Read concurrent stream data
+-   Query by content and region
+-   Monitor viewership for infrastructure scaling
+
+**Publisher (Read Access)**
+
+-   Read concurrent stream data for owned content
+-   Monitor viewership for monetization optimization
+-   Access historical viewership patterns
+
+**DSP/Advertiser (Read Access)**
+
+-   Read concurrent stream data
+-   Adjust bidding strategies based on viewership
+-   Optimize campaign pacing
+
+**Streams Data Provider (Write + Read Access)**
+
+-   Publish concurrent stream data (if applicable)
+-   Read all stream data
+-   Manage data quality and accuracy
+
+----------
+
+## Integration with Event Forecasts API <a name="integration"></a>
+
+The Concurrent Streams API complements the Event Forecasts API (upcoming):
+
+**Event Forecasts API**  - Provides advance notice of upcoming events with forecasted viewership
+
+**Concurrent Streams API**  - Provides real-time viewership during live events
+
+**Recommended Integration Pattern:**
+
+1.  Use Event Forecasts API to prepare infrastructure for upcoming events
+2.  Switch to Concurrent Streams API once event goes live
+3.  Compare actual viewership (Concurrent Streams) vs. forecast (Event Forecasts) for accuracy tuning
+4.  Use historical concurrent stream data to improve future forecasts
+
