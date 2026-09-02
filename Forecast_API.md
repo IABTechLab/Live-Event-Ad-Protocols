@@ -1,3 +1,7 @@
+![IAB Tech Lab](https://drive.google.com/uc?id=10yoBoG5uRETSXRrnJPUDuONujvADrSG1)
+# Live Event Ad Playbook (LEAP)
+# Forecast API Specification
+
 # About the IAB Tech Lab <a name="techlab"></a>
 The IAB Technology Laboratory is a nonprofit research and development consortium charged with producing and helping companies implement global industry technical standards and solutions. The goal of the Tech Lab is to reduce friction associated with the digital advertising and marketing supply chain while contributing to the safe growth of an industry. The IAB Tech Lab spearheads the development of technical standards, creates and maintains a code library to assist in rapid, cost-effective implementation of IAB standards, and establishes a test platform for companies to evaluate the compatibility of their technology solutions with IAB standards, which for 18 years have been the foundation for interoperability and profitable growth in the digital advertising supply chain. Further details about the IAB Technology Lab can be found at www.iabtechlab.com
 
@@ -16,8 +20,6 @@ THE STANDARDS, THE SPECIFICATIONS, THE MEASUREMENT GUIDELINES, AND ANY OTHER MAT
 ## Executive Summary
 
 Today’s programmatic systems lack standardized mechanisms for surfacing future live event supply, limiting buyers’ ability to plan and reserve inventory in advance. To address this, we propose an API that enables broadcasters and content owners to publish structured metadata—such as event schedules, expected ad breaks, and audience forecasts—to exchanges and DSPs. Using a shared identifier and a schema aligned with OpenRTB and AdCOM standards, this API will make upcoming inventory discoverable and actionable, enabling a scalable advance market for live streaming advertising.
-
----
 
 ## Table of Contents
 
@@ -43,28 +45,20 @@ Today’s programmatic systems lack standardized mechanisms for surfacing future
   - [Sample: Political Event (Debate)](#sample-political-event-debate)
   - [Sample: Political Event (Election Night News Coverage)](#sample-political-event-election-night-news-coverage)
 
----
-
 ## Introduction and Background <a name="intro"></a>
 
 We want to enable both a “spot” market for streaming live events, as well as an “advance” market. In order to enable an advance market, buyers need to become aware of upcoming supply including but not limited to live events that will be available at some future point. To enable that, sellers must be able to notify buyers that a given program will be streamed, with anticipated parameters including start/end time, expected streams, and expected inventory configuration.
 
 The proposed approach is to standardize a messaging format for syncing a Live Events Manifest, with a common identifier for any given event, which buyers and sellers can use to communicate about it. Broadcasters/streamers might push their manifest into the exchanges that are authorized to sell this supply via this API. Exchanges might subsequently push these manifests into their integrated DSPs (or perhaps broadcasters/streamers would do it) using the same standardized API.
 
----
-
 ### Goals <a name="goals"></a>
 
 - Forecast is shared to facilitate pre-planning of both “spot” market and “advance”.
-
----
 
 ### Non Goals
 
 - Realtime scaling use cases that require Real Time Active user volume estimates are covered under “Concurrent Streams API” scope.
 - While meant to help inform what content goes into a given deal negotiation, the specifics of those deals should be communicated through the Deal API.
-
----
 
 ## In Scope <a name="scope"></a>
 
@@ -72,13 +66,9 @@ The proposed approach is to standardize a messaging format for syncing a Live Ev
 - Ensure advertising systems and partners in the monetization supply chain have concurrency estimates that reflect expected traffic volume of upcoming events so they can plan infrastructure scaling to manage incoming QPS spikes for upcoming events.
 - Provide information to help inform deal negotiations.
 
----
-
 ## Out of Scope
 
 It is assumed that Inventory Owners standing up this endpoint will create a security model to ensure information is only available to parties where there is an existing agreement. The authentication protocol is left to the discretion of the event creator, and should be discussed with API users a priori.
-
----
 
 ## Functional Requirements
 
@@ -140,8 +130,6 @@ Refer to the [AdCOM 1.0 Content Object](https://github.com/InteractiveAdvertisin
 | timestamp | int, required) | Date/time of the snapshot (Unix timestamp in milliseconds) |
 | events | array(object), required) | Events data requested by the caller |
 
----
-
 ## Implementation Guidance <a name="impguidance"></a>
 
 ### Getting Started
@@ -155,8 +143,6 @@ Refer to the [AdCOM 1.0 Content Object](https://github.com/InteractiveAdvertisin
 
 - Values are likely to change over time as the event gets closer. Farther-out events will have more approximate viewership estimations, but it is still helpful to send an expected viewership range with the understanding that forecasts will become more accurate over time.
 - Some event metadata may be omitted based on real-time conditions. For example, a post-season game will not be determined until very close to the event because the teams cannot be known.
-
----
 
 ## Uncertainty <a name="uncertainty"></a>
 
@@ -212,8 +198,6 @@ Many live events contain both planned and unplanned inventory. Recommended pract
 - Treat `unplanned = 1` as a signal of forecast uncertainty
 - Expect inventory delivery to be non-uniform and potentially front- or back-loaded
 - Plan for dynamic pacing and potential makegoods
-
----
 
 ## JSON Examples
 
