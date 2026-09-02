@@ -1,8 +1,11 @@
 ![IAB Tech Lab](https://drive.google.com/uc?id=10yoBoG5uRETSXRrnJPUDuONujvADrSG1)
 
-# **Implementation Guidance for Live Event Ad Protocols**
+# **Implementation Guidance for the Live Event Ad Playbook**
 
-#### About Live Event Ads Playbook (LEAP)
+#### About the Advanced TV Pillar at IAB Tech Lab
+https://iabtechlab.com/standards/advanced-tv/
+
+#### About the Live Event Ads Playbook (LEAP)
 https://iabtechlab.com/leap
 
 #### About OpenRTB
@@ -18,9 +21,9 @@ Learn more about IAB Tech Lab here: [https://www.iabtechlab.com/](https://www.ia
 
 # LEAP Implementation Guidance
 
-This directory contains implementation guidance for the IAB Tech Lab Live Event Ad Playbook (LEAP) APIs.
+This directory contains implementation guidance for the IAB Tech Lab Live Event Ad Playbook (LEAP).
 
-The guidance is organized into a shared API conventions document, API-specific implementation guides, and a multi-API workflow guide that explains how the Forecast API and Concurrent Streams API can be used together.  Any additional API products from LEAP will also exist in this directory.
+The guidance is organized into a shared API conventions document, API-specific implementation guides, and a multi-API workflow guide that explains how the Forecast API and Concurrent Streams API can be used together.  Any additional products from the LEAP project will also exist in this directory and related guides.
 
 ## Documents
 
