@@ -6,7 +6,7 @@
 
 **Companion documents:** [Common API Guidance](Common_API_Guidance.md), [Forecast API Guidance](Forecast_API_Guidance.md), [Concurrent Streams API Guidance](Concurrent_Streams_API_Guidance.md). The corresponding [Forecast API specification](../Forecast_API.md) and [Concurrent Streams API specification](../Concurrent_Streams_API.md) control if this guide conflicts with them.
 
-> **Important:** Forecast and Concurrent Streams APIs communicate future estimates and current stream counts, **not guaranteed available advertising impressions, programmatic access, deal eligibility, bid-request counts, or ad-break timing**. Buyers and technology platforms must apply their own contractual, routing, targeting, fill, and monetization assumptions. The separate v1.1 proposal tracker is not part of LEAP 1.0 guidance.
+> **Important:** Forecast and Concurrent Streams APIs communicate future estimates and current stream counts, **not guaranteed available advertising impressions, programmatic access, deal eligibility, bid-request counts, or ad-break timing**. Buyers and technology platforms must apply their own contractual, routing, targeting, fill, and monetization assumptions.
 
 ## Purpose and intended audience
 
@@ -801,8 +801,3 @@ Implementers should agree on authentication, permitted scopes, shared identifier
 | DSP request volume at intermission | Not reported by either LEAP API | 14.8M in external bidstream example | Investigate paths against a separately modeled 11.4M stream-slot bound |
 
 A useful review asks which planning assumptions were wrong, whether capacity held during the peak, and how much campaign delivery was actually accessible and won. None of the post-event pod or bid-request observations should be mislabeled as Concurrent Streams response fields.
-
-## Potential changes outside the v1.0 scope
-
-The constituent walkthrough contains a separate **“With proposed additions”** mode. That mode is intentionally **not** reproduced as current functionality here. A separate working-group **LEAP v1.1 proposal tracker** (not part of this published v1.0 guide) records its proposed forecast summary and per-event lookup, concurrent event-ID filtering and lifecycle status, regional taxonomy, ad-break detail, disclosure, and `flexend` rename for discussion **after** the 1.0 public-comment publication. None are endorsed or normative through this document.
-
